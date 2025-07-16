@@ -279,7 +279,7 @@ gsap.to('.indicator', {
 
   items.forEach((el, pos) => {
 
-    let bttn = el.querySelector(".particles-button");
+    let bttn = el.querySelector("button.particles-button");
     if (!bttn) return; 
     let particlesOpts = arrOpts[pos];
     const particles = new Particles(bttn, particlesOpts);
