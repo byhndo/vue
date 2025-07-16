@@ -4,7 +4,7 @@ const Bio = {
 
 
 <!-- sub1 -->
-<div class="sub1" key="bio" v-if="bg==='bio'">
+<div class="sub1">
 <div class="box1">
 <svg class="sub">
 <defs>
