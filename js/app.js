@@ -149,25 +149,6 @@ const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
 const app = Vue.createApp({  
- setup() {
-    const bg = ref('bio') 
-
-    const goToBio = () => {
-      bg.value = 'bio'
-      router.push('/')
-    }
-
-    const goToPhotos = () => {
-      bg.value = 'photos'
-      router.push('/')
-    }
-
-    return {
-      bg,
-      goToBio,
-      goToPhotos
-    }
- },
     methods: {
         afterEnter(el) {
             setupReveal(el);
@@ -176,7 +157,7 @@ const app = Vue.createApp({
             el.ctx && el.ctx.revert();
         }	
     },
-data() {
+    data() {
         return {
             bg: 'bio'
         }
