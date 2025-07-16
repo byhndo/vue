@@ -145,11 +145,8 @@ $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });
 	
-const {
-    createApp,
-    ref,
-    onMounted
-} = Vue
+const { createApp, ref, onMounted} = Vue;
+const { createRouter, createWebHistory } = VueRouter;
 		
 const app = Vue.createApp({
    mounted() {
