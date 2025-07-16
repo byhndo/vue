@@ -163,7 +163,15 @@ const app = Vue.createApp({
         afterLeave(el) {
             el.ctx && el.ctx.revert();
         },
-	removeHashIfNeeded() {
+	    goToBio() {
+    this.bg = 'bio'
+    this.$router.push('/bio')
+	    },
+	    goToPhotos() {
+    this.bg = 'photos'
+    this.$router.push('/photos')
+	    },
+	    removeHashIfNeeded() {
           if (window.location.hash) {
           history.replaceState(null, null, window.location.pathname);
         }
