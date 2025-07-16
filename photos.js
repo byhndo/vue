@@ -4,7 +4,7 @@ const Photos = {
 
 
 <!-- sub2 -->
-<div class="sub2" key="photos" v-if="bg==='photos'">
+<div class="sub2">
 <div class="box1">
 <svg class="sub">
 <defs>
