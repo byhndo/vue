@@ -151,7 +151,7 @@ const {
     onMounted
 } = Vue
 		
-createApp({
+const app = Vue.createApp({
    mounted() {
     window.addEventListener("hashchange", this.removeHashIfNeeded);
     this.removeHashIfNeeded(); 
@@ -177,7 +177,9 @@ data() {
             bg: 'bio'
         }
     }
-}).mount('#app') 
+})
+app.use(router)
+app.mount("#app");
 
 
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
