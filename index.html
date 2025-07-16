@@ -68,10 +68,14 @@
 	
 <div class="wrapnav">
 <div class="nav theme">
- <router-link to="/" @click="bg = 'bio'" id="btn-nav-1"><button class="particles-button">About</button></router-link>
+<!-- <router-link to="/" @click="bg = 'bio'" id="btn-nav-1"><button class="particles-button">About</button></router-link> -->
+<button class="particles-button" id="btn-nav-1" @click="$router.push('/'); bg = 'bio'">About</button>
+
 </div>
 <div class="nav theme">
- <router-link to="/photos" @click="bg = 'photos'" id="btn-nav-2"><button class="particles-button">Photo</button></router-link>                                        
+<!-- <router-link to="/photos" @click="bg = 'photos'" id="btn-nav-2"><button class="particles-button">Photo</button></router-link>  -->                                     
+<button class="particles-button" id="btn-nav-1" @click="$router.push('/'); bg = 'bio'">Photos</button>
+
 </div>
 </div> 
 
