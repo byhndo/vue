@@ -149,13 +149,25 @@ const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
 const app = Vue.createApp({  
+   mounted() {
+    window.addEventListener("hashchange", this.removeHashIfNeeded);
+    this.removeHashIfNeeded(); 
+  },
+   beforeUnmount() { 
+    window.removeEventListener("hashchange", this.removeHashIfNeeded);
+  },
     methods: {
         afterEnter(el) {
             setupReveal(el);
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-        }	
+        },
+	removeHashIfNeeded() {
+          if (window.location.hash) {
+          history.replaceState(null, null, window.location.pathname);
+        }
+       }
     },
     data() {
         return {
@@ -166,6 +178,20 @@ const app = Vue.createApp({
 app.use(router)
 app.mount("#app");
 
+document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
+  button.addEventListener('click', function () {
+    const sectionId = this.getAttribute('data-hash');
+    const targetElement = document.getElementById(sectionId);
+    const headerHeight = document.querySelector('.wrapnav')?.offsetHeight || 0;
+    
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - headerHeight
+      });
+      window.location.hash = sectionId;
+    }
+  });
+});
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
