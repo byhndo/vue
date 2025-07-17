@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-window.onload = function() {
-window.requestAnimationFrame(function() {
+document.addEventListener("DOMContentLoaded", function() {
 
 var width = 100,
   perfData = window.performance.timing,
@@ -787,5 +785,3 @@ tl.to(footer, {
 	
 /*loader*/
 });      
-}; 
-});
