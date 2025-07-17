@@ -139,13 +139,6 @@ const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
 const app = Vue.createApp({  
-   mounted() {
-    window.addEventListener("hashchange", this.removeHashIfNeeded);
-    this.removeHashIfNeeded(); 
-  },
-   beforeUnmount() { 
-    window.removeEventListener("hashchange", this.removeHashIfNeeded);
-  },
     methods: {
         afterEnter(el) {
             setupReveal(el);
