@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
 
 
 
@@ -62,6 +61,7 @@ app.mount("#app");
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
 
 	
 	
