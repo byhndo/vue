@@ -1,3 +1,4 @@
+
 const routes = [
   { path: '/', redirect: '/bio'},
   { name: "Bio", path: "/bio", component: Bio },
@@ -14,7 +15,7 @@ const router = VueRouter.createRouter({
 
 
 router.beforeEach((to, from, next) => {
-      document.getElementByClassName('preloader-wrap').classList.remove('hidden')
+      document.getElementsByClassName('preloader-wrap').classList.remove('hidden')
       next()
     })
 
