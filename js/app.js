@@ -132,11 +132,11 @@ const app = Vue.createApp({
     methods: {
         afterEnter(el) {
             setupReveal(el);
-	    bgPath(el);
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-	    delete el.ctx;		
+	    delete el.ctx;	
+	    bgPath(el);
         },
 	goToBio() {
             this.bg = 'bio'
