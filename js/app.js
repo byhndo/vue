@@ -1,7 +1,7 @@
 
 
 
-	
+gsap.registerPlugin(ScrollTrigger);	
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
@@ -187,7 +187,7 @@ $('html, body').css({
   'height': 'auto'
 })
 		
-gsap.registerPlugin(ScrollTrigger);
+
 	
 $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
