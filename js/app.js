@@ -45,9 +45,9 @@ async function animateLoader() {
   let tl = gsap.timeline({
     paused: true,
     onComplete: contentShow
-  })
+  });
 	    	
-  .to(".percentage", {
+  tl.to(".percentage", {
     autoAlpha: 0,
     duration: 1,
     delay: 1,
