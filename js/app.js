@@ -170,7 +170,7 @@ const app = Vue.createApp({
 app.use(router)
 app.mount("#app");
 
-/*document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
+document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
     const sectionId = this.getAttribute('data-hash');
     const targetElement = document.getElementById(sectionId);
@@ -183,7 +183,7 @@ app.mount("#app");
       window.location.hash = sectionId;
     }
   });
-});*/
+});
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
