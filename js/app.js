@@ -1,55 +1,4 @@
-
-
-
-gsap.registerPlugin(ScrollTrigger);	
-const { createApp, ref, onMounted} = Vue;
-const { createRouter, createWebHistory } = VueRouter;
-		
-const app = Vue.createApp({  
-   mounted() {
-    window.addEventListener("hashchange", this.removeHashIfNeeded);
-    this.removeHashIfNeeded(); 
-  },
-   beforeUnmount() { 
-    window.removeEventListener("hashchange", this.removeHashIfNeeded);
-  },
-    methods: {
-        afterEnter(el) {
-            setupReveal(el);
-        },
-        afterLeave(el) {
-            el.ctx && el.ctx.revert();
-        },
-	    goToBio() {
-    this.bg = 'bio'
-    this.$router.push('/bio')
-	    },
-	    goToPhotos() {
-    this.bg = 'photos'
-    this.$router.push('/photos')
-	    },
-	    removeHashIfNeeded() {
-          if (window.location.hash) {
-          history.replaceState(null, null, window.location.pathname);
-        }
-       }
-    },
-    data() {
-        return {
-            bg: 'bio'
-        }
-    }
-})
-app.use(router)
-app.mount("#app");
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
-
-
-
-	
 	
 var width = 100,
   perfData = window.performance.timing,
@@ -174,9 +123,7 @@ async function animateLoader() {
 
 animateLoader();
 		
-function contentShow() {
-	
-
+function contentShow() {	
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
 const once = "play none none reset";
@@ -186,9 +133,49 @@ $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
 })
-		
 
-	
+gsap.registerPlugin(ScrollTrigger);	
+const { createApp, ref, onMounted} = Vue;
+const { createRouter, createWebHistory } = VueRouter;
+		
+const app = Vue.createApp({  
+   mounted() {
+    window.addEventListener("hashchange", this.removeHashIfNeeded);
+    this.removeHashIfNeeded(); 
+  },
+   beforeUnmount() { 
+    window.removeEventListener("hashchange", this.removeHashIfNeeded);
+  },
+    methods: {
+        afterEnter(el) {
+            setupReveal(el);
+        },
+        afterLeave(el) {
+            el.ctx && el.ctx.revert();
+        },
+	    goToBio() {
+    this.bg = 'bio'
+    this.$router.push('/bio')
+	    },
+	    goToPhotos() {
+    this.bg = 'photos'
+    this.$router.push('/photos')
+	    },
+	    removeHashIfNeeded() {
+          if (window.location.hash) {
+          history.replaceState(null, null, window.location.pathname);
+        }
+       }
+    },
+    data() {
+        return {
+            bg: 'bio'
+        }
+    }
+})
+app.use(router)
+app.mount("#app");
+		
 $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });	
