@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+window.addEventListener("load", function(e) {
+
 var width = 100,
   perfData = window.performance.timing,
   EstimatedTime = Math.abs(perfData.loadEventEnd - perfData.navigationStart),
@@ -120,15 +123,6 @@ async function animateLoader() {
 }
 
 animateLoader();
-
-
-
-document.addEventListener("DOMContentLoaded", function(event) {
-window.addEventListener("load", function(e) {
-
-
-
-
 		
 function contentShow() {	
 const easing = "expoScale(0.5,7,none)";
