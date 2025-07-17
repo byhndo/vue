@@ -60,18 +60,18 @@
 <div id="app">
 <div :class="['bg', bg]"> 
 <svg class="transition transition-bio" id="bio" viewBox="0 0 100 100" preserveAspectRatio="none">
-<path ref="bioPath" id="bioPath" fill="var(--light)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z"  />	
+<path id="bioPath" fill="var(--light)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z"  />	
 </svg>
 <svg class="transition transition-photos" id="photos" viewBox="0 0 100 100" preserveAspectRatio="none">
-<path ref="photosPath" id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />	
+<path id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />	
 </svg>  
 	
 <div class="wrapnav">
 <div class="nav theme">
-<button ref="bioBtn" @click="goToBio" id="btn-nav-1" class="particles-button" data-hash="bio">About</button> 
+<button @click="goToBio" id="btn-nav-1" class="particles-button" data-hash="bio">About</button> 
 </div>
 <div class="nav theme">
-<button ref="photosBtn" @click="goToPhotos" id="btn-nav-2" class="particles-button" data-hash="photos">Photos</button> 
+<button @click="goToPhotos" id="btn-nav-2" class="particles-button" data-hash="photos">Photos</button> 
 </div>
 </div> 
 
