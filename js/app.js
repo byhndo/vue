@@ -135,6 +135,11 @@ $('html, body').css({
 })	
 	
 gsap.registerPlugin(ScrollTrigger);
+
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+	
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
@@ -177,10 +182,6 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
       window.location.hash = sectionId;
     }
   });
-});
-
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });
 	
 const title = document.querySelector("h1");
