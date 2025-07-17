@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-window.addEventListener("load", function(e) {
+window.addEventListener("load", function() {
 
 var width = 100,
   perfData = window.performance.timing,
@@ -784,5 +784,5 @@ tl.to(footer, {
 }
 	
 
-}, false);
+});
 });
