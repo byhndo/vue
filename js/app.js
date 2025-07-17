@@ -208,7 +208,7 @@ setup() {
     photosBtn,
     afterEnter
   };
-}
+},
 
 
 
