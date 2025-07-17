@@ -1,5 +1,70 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+
+
+const easing = "expoScale(0.5,7,none)";
+const dur = 1;
+const once = "play none none reset";
+const delaytl = .5;
+
+$('html, body').css({
+  'overflow': 'auto',
+  'height': 'auto'
+})
+		
+gsap.registerPlugin(ScrollTrigger);
+	
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+	
+const { createApp, ref, onMounted} = Vue;
+const { createRouter, createWebHistory } = VueRouter;
+		
+const app = Vue.createApp({  
+   mounted() {
+    window.addEventListener("hashchange", this.removeHashIfNeeded);
+    this.removeHashIfNeeded(); 
+  },
+   beforeUnmount() { 
+    window.removeEventListener("hashchange", this.removeHashIfNeeded);
+  },
+    methods: {
+        afterEnter(el) {
+            setupReveal(el);
+        },
+        afterLeave(el) {
+            el.ctx && el.ctx.revert();
+        },
+	    goToBio() {
+    this.bg = 'bio'
+    this.$router.push('/bio')
+	    },
+	    goToPhotos() {
+    this.bg = 'photos'
+    this.$router.push('/photos')
+	    },
+	    removeHashIfNeeded() {
+          if (window.location.hash) {
+          history.replaceState(null, null, window.location.pathname);
+        }
+       }
+    },
+    data() {
+        return {
+            bg: 'bio'
+        }
+    }
+})
+app.use(router)
+app.mount("#app");
+
+
+
+
+
+	
+	
 var width = 100,
   perfData = window.performance.timing,
   EstimatedTime = Math.abs(perfData.loadEventEnd - perfData.navigationStart),
@@ -125,66 +190,13 @@ animateLoader();
 		
 function contentShow() {
 	
-const easing = "expoScale(0.5,7,none)";
-const dur = 1;
-const once = "play none none reset";
-const delaytl = .5;
 
-$('html, body').css({
-  'overflow': 'auto',
-  'height': 'auto'
-})
-		
-gsap.registerPlugin(ScrollTrigger);
-	
-/*$('.one').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});*/
 
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
+
+
+
+
 	
-const { createApp, ref, onMounted} = Vue;
-const { createRouter, createWebHistory } = VueRouter;
-		
-const app = Vue.createApp({  
-   mounted() {
-    window.addEventListener("hashchange", this.removeHashIfNeeded);
-    this.removeHashIfNeeded(); 
-  },
-   beforeUnmount() { 
-    window.removeEventListener("hashchange", this.removeHashIfNeeded);
-  },
-    methods: {
-        afterEnter(el) {
-            setupReveal(el);
-        },
-        afterLeave(el) {
-            el.ctx && el.ctx.revert();
-        },
-	    goToBio() {
-    this.bg = 'bio'
-    this.$router.push('/bio')
-	    },
-	    goToPhotos() {
-    this.bg = 'photos'
-    this.$router.push('/photos')
-	    },
-	    removeHashIfNeeded() {
-          if (window.location.hash) {
-          history.replaceState(null, null, window.location.pathname);
-        }
-       }
-    },
-    data() {
-        return {
-            bg: 'bio'
-        }
-    }
-})
-app.use(router)
-app.mount("#app");
 
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
