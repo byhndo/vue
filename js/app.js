@@ -124,9 +124,10 @@ async function animateLoader() {
 
 animateLoader();
 			
+function contentShow() {
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
-		
+	
 const app = Vue.createApp({ 	
     methods: {
         afterEnter(el) {
@@ -153,8 +154,7 @@ const app = Vue.createApp({
 })
 app.use(router)
 app.mount("#app");
-
-function contentShow() {
+	
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
 const once = "play none none reset";
