@@ -129,12 +129,17 @@ const dur = 1;
 const once = "play none none reset";
 const delaytl = .5;
 
+gsap.registerPlugin(ScrollTrigger);
+
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
 })
 
-gsap.registerPlugin(ScrollTrigger);	
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});	
+	
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
@@ -164,10 +169,6 @@ const app = Vue.createApp({
 app.use(router)
 app.mount("#app");
 		
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});	
-
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
     const sectionId = this.getAttribute('data-hash');
