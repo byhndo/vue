@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-async function animateLoader() {
-  await new Promise((resolve) => setTimeout(resolve, time));
-	
-
-	
 var width = 100,
   perfData = window.performance.timing,
   EstimatedTime = Math.abs(perfData.loadEventEnd - perfData.navigationStart),
@@ -36,8 +31,9 @@ function animateValue(id, start, end, duration) {
   }, stepTime);
 }
 
-animateValue();
-
+async function animateLoader() {
+  await new Promise((resolve) => setTimeout(resolve, time));
+	
   let percentBar = document.getElementById("precent");
   let loadingBar = document.getElementById("loader");
 	
