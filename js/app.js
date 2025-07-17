@@ -135,24 +135,24 @@ const app = Vue.createApp({
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-	    delete el.ctx;	
-	    bgPath(el);
+            delete el.ctx;	
+            bgPath(el);
         },
-	goToBio() {
-            this.bg = 'bio'
-            this.$router.push('/bio')
+        goToBio() {
+            this.bg = 'bio';
+            this.$router.push('/bio');
         },
         goToPhotos() {
-            this.bg = 'photos'
-            this.$router.push('/photos')
+            this.bg = 'photos';
+            this.$router.push('/photos');
         }
-        },
-	data() {
+    },
+    data() {
         return {
             bg: 'bio'
-        }
-	}
-})
+        };
+    }
+});
 app.use(router)
 app.mount("#app");
 	
