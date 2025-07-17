@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-window.addEventListener("load", function() {
+window.onload = function() {
+window.requestAnimationFrame(function() {
 
 var width = 100,
   perfData = window.performance.timing,
@@ -782,7 +783,9 @@ tl.to(footer, {
 }
 	 
 }
-	
 
-});
+	
+/*loader*/
+});      
+}; 
 });
