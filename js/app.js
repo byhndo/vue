@@ -123,7 +123,8 @@ async function animateLoader() {
 
 animateLoader();
 		
-function contentShow() {	
+function contentShow() {
+	
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
 const once = "play none none reset";
@@ -132,10 +133,10 @@ const delaytl = .5;
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
-})	
-	
+})
+		
 gsap.registerPlugin(ScrollTrigger);
-
+	
 $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });
@@ -143,22 +144,14 @@ $('.quote').each(function(){
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
-const app = Vue.createApp({  
+const app = Vue.createApp({     
     methods: {
         afterEnter(el) {
             setupReveal(el);
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-        },
-	    goToBio() {
-    this.bg = 'bio'
-    this.$router.push('/bio')
-	    },
-	    goToPhotos() {
-    this.bg = 'photos'
-    this.$router.push('/photos')
-	    }	    
+        }	
     },
     data() {
         return {
@@ -168,7 +161,7 @@ const app = Vue.createApp({
 })
 app.use(router)
 app.mount("#app");
-		
+
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
     const sectionId = this.getAttribute('data-hash');
@@ -186,7 +179,8 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
-const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`
+const feDisplacementMap = document.querySelector(
+  `#noisetitle feDisplacementMap`
 );
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
@@ -769,7 +763,5 @@ tl.to(footer, {
 }
 	 
 }
-
 	
-/*loader*/
-});      
+})
