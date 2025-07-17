@@ -145,7 +145,7 @@ const { createRouter, createWebHistory } = VueRouter;
 		
 const app = Vue.createApp({  
     methods: {
-        onEnter(el) {
+        afterEnter(el) {
             setupReveal(el);
         },
         afterLeave(el) {
