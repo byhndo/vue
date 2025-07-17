@@ -123,24 +123,7 @@ async function animateLoader() {
 }
 
 animateLoader();
-		
-	
-const easing = "expoScale(0.5,7,none)";
-const dur = 1;
-const once = "play none none reset";
-const delaytl = .5;
-
-$('html, body').css({
-  'overflow': 'auto',
-  'height': 'auto'
-})
-		
-gsap.registerPlugin(ScrollTrigger);
-	
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
-	
+			
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
@@ -171,6 +154,23 @@ const app = Vue.createApp({
 app.use(router)
 app.mount("#app");
 
+function contentShow() {
+const easing = "expoScale(0.5,7,none)";
+const dur = 1;
+const once = "play none none reset";
+const delaytl = .5;
+
+$('html, body').css({
+  'overflow': 'auto',
+  'height': 'auto'
+})
+		
+gsap.registerPlugin(ScrollTrigger);
+	
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
     const sectionId = this.getAttribute('data-hash');
@@ -185,9 +185,6 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
     }
   });
 });
-
-
-function contentShow() {	
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
