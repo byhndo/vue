@@ -132,11 +132,7 @@ const delaytl = .5;
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
-})
-
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});	
+})	
 	
 gsap.registerPlugin(ScrollTrigger);
 const { createApp, ref, onMounted} = Vue;
@@ -181,6 +177,10 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
       window.location.hash = sectionId;
     }
   });
+});
+
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });
 	
 const title = document.querySelector("h1");
