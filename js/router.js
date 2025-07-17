@@ -1,4 +1,3 @@
-
 const routes = [
   { path: '/', redirect: '/bio'},
   { name: "Bio", path: "/bio", component: Bio },
