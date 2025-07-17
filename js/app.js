@@ -129,8 +129,6 @@ const dur = 1;
 const once = "play none none reset";
 const delaytl = .5;
 
-gsap.registerPlugin(ScrollTrigger);
-
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
@@ -140,6 +138,7 @@ $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });	
 	
+gsap.registerPlugin(ScrollTrigger);
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
