@@ -124,7 +124,6 @@ async function animateLoader() {
 
 animateLoader();
 		
-function contentShow() {
 	
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
@@ -186,6 +185,9 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
     }
   });
 });
+
+
+function contentShow() {	
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
