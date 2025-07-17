@@ -186,8 +186,7 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
 	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
-const feDisplacementMap = document.querySelector(
-  `#noisetitle feDisplacementMap`
+const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`
 );
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
