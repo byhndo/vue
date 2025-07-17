@@ -419,7 +419,7 @@ const photosPath = document.getElementById("photosPath");
     }
   };
 	
-  const tl = gsap.timeline({
+  const tl1 = gsap.timeline({
     paused: true
   })
 
@@ -461,7 +461,7 @@ const photosPath = document.getElementById("photosPath");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
   bioBtn.addEventListener("click", () => {
-    tl.restart();
+    tl1.restart();
   });
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
