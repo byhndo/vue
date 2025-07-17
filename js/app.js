@@ -151,21 +151,21 @@ const app = Vue.createApp({
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-        }	
-    },
-    goToBio() {
-    this.bg = 'bio'
-    this.$router.push('/bio')
-    },
-    goToPhotos() {
-    this.bg = 'photos'
-    this.$router.push('/photos')
-    },
-    data() {
+        },
+	goToBio() {
+            this.bg = 'bio'
+            this.$router.push('/bio')
+        },
+        goToPhotos() {
+            this.bg = 'photos'
+            this.$router.push('/photos')
+        }
+        },
+	data() {
         return {
             bg: 'bio'
         }
-    }
+	}
 })
 app.use(router)
 app.mount("#app");
