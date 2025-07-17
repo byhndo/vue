@@ -135,8 +135,7 @@ const app = Vue.createApp({
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-            delete el.ctx;	
-            bgPath(el);
+            delete el.ctx;			
         },
         goToBio() {
             this.bg = 'bio';
