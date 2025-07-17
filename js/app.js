@@ -144,76 +144,7 @@ $('.quote').each(function(){
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 		
-const app = Vue.createApp({ 
-setup() {
-  const bioPath = ref(null);
-  const photosPath = ref(null);
-  const bioBtn = ref(null);
-  const photosBtn = ref(null);
-
-  const paths = {
-    step1: {
-      unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
-      inBetween: "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",
-      filled: "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
-    },
-    step2: {
-      unfilled: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",
-      inBetween: "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
-      filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
-    }
-  };
-
-  const afterEnter = (el, done) => {
-    const tl1 = gsap.timeline({ paused: true })
-      .set(bioPath.value, { attr: { d: paths.step1.unfilled } })
-      .to(bioPath.value, {
-        duration: 1.1,
-        ease: "power3.in",
-        attr: { d: paths.step1.inBetween }
-      }, 0)
-      .to(bioPath.value, {
-        duration: 0.5,
-        ease: "power1",
-        attr: { d: paths.step1.filled }
-      });
-
-    const tl2 = gsap.timeline({ paused: true })
-      .set(photosPath.value, { attr: { d: paths.step2.unfilled } })
-      .to(photosPath.value, {
-        duration: 1.1,
-        ease: "power3.in",
-        attr: { d: paths.step2.inBetween }
-      }, 0)
-      .to(photosPath.value, {
-        duration: 0.5,
-        ease: "power1",
-        attr: { d: paths.step2.filled }
-      });
-
-    bioBtn.value.addEventListener("click", () => {
-      tl1.restart();
-    });
-    photosBtn.value.addEventListener("click", () => {
-      tl2.restart();
-    });
-
-    done();
-  };
-
-  return {
-    bioPath,
-    photosPath,
-    bioBtn,
-    photosBtn,
-    afterEnter
-  };
-},
-
-
-
-
-	
+const app = Vue.createApp({ 	
     methods: {
         afterEnter(el) {
             setupReveal(el);
@@ -464,7 +395,7 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
                 
-/*const bioPath = document.getElementById("bioPath");
+const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
     const paths = {
@@ -529,7 +460,7 @@ const photosPath = document.getElementById("photosPath");
   });
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
-  });*/
+  });
 
 	
 function setupReveal(container) {
