@@ -1,22 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
 
 
 
-const easing = "expoScale(0.5,7,none)";
-const dur = 1;
-const once = "play none none reset";
-const delaytl = .5;
-
-$('html, body').css({
-  'overflow': 'auto',
-  'height': 'auto'
-})
-		
-gsap.registerPlugin(ScrollTrigger);
-	
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
 	
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
@@ -60,6 +44,8 @@ app.use(router)
 app.mount("#app");
 
 
+
+document.addEventListener("DOMContentLoaded", function() {
 
 
 
@@ -191,12 +177,21 @@ animateLoader();
 function contentShow() {
 	
 
+const easing = "expoScale(0.5,7,none)";
+const dur = 1;
+const once = "play none none reset";
+const delaytl = .5;
 
-
-
-
-
+$('html, body').css({
+  'overflow': 'auto',
+  'height': 'auto'
+})
+		
+gsap.registerPlugin(ScrollTrigger);
 	
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});	
 
 document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
   button.addEventListener('click', function () {
