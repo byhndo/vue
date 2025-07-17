@@ -398,7 +398,7 @@ gsap.ticker.lagSmoothing(0);
 
 	
 function setupReveal(container) {
-container.ctx = gsap.context(() => {  
+
 	
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
@@ -467,7 +467,7 @@ const photosPath = document.getElementById("photosPath");
     tl2.restart();
   });
 
-	
+container.ctx = gsap.context(() => {  	
 /*function setupReveal(container) {
 container.ctx = gsap.context(() => {	*/
 	
