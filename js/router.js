@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
         }))
 
         Promise.all([...imgPromises, ...audioPromises]).then(() => {
-          document.getElementById('preloader').classList.add('hidden')
+          document.getElementsByClassName('preloader-wrap').classList.add('hidden')
         })
       }, 100)
     })
