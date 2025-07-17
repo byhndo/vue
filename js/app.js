@@ -132,10 +132,11 @@ const app = Vue.createApp({
     methods: {
         afterEnter(el) {
             setupReveal(el);
+	    bgPath(el);
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-	    delete el.ctx;
+	    delete el.ctx;		
         },
 	goToBio() {
             this.bg = 'bio'
@@ -396,10 +397,7 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
-	
-function setupReveal(container) {
-
-	
+function bgPath() {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
@@ -466,10 +464,12 @@ const photosPath = document.getElementById("photosPath");
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
   });
+	
+}
 
-container.ctx = gsap.context(() => {  	
-/*function setupReveal(container) {
-container.ctx = gsap.context(() => {	*/
+  	
+function setupReveal(container) {
+container.ctx = gsap.context(() => {	
 	
 const RevealBoxsme = container.querySelectorAll(".boxme");
    RevealBoxsme.forEach((boxme, a) => { 	   	   
