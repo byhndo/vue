@@ -1,4 +1,3 @@
-window.addEventListener("load", function () {
 
 var width = 100,
   perfData = window.performance.timing,
@@ -30,6 +29,8 @@ function animateValue(id, start, end, duration) {
     }
   }, stepTime);
 }
+
+window.addEventListener("load", function () {
 
 async function animateLoader() {
   await new Promise((resolve) => setTimeout(resolve, time));
