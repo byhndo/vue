@@ -157,6 +157,19 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
+mounted() {
+  if (this.$route.path.includes('bio')) {
+    this.bg = 'bio';
+  } else if (this.$route.path.includes('photos')) {
+    this.bg = 'photos';
+  }
+
+  Vue.nextTick(() => {
+    bgPath(this.bg); 
+    this.firstLoad = false;
+  });
+},
+
     data() {
       return { bg: 'bio'};
       firstLoad: true
@@ -178,7 +191,8 @@ const app = Vue.createApp({
             this.$router.push('/photos');
          }
         },
-     watch: {
+     
+watch: {
   $route(to) {
     if (to.path.includes('bio')) {
       this.bg = 'bio';
@@ -186,16 +200,14 @@ const app = Vue.createApp({
       this.bg = 'photos';
     }
 
-   if (this.firstLoad) {
-      this.firstLoad = false;
-      return; 
-    }
+    if (this.firstLoad) return;
 
-   Vue.nextTick(() => {
+    Vue.nextTick(() => {
       bgPath(this.bg);
     });
   }
 }
+
 	
 });
 app.use(router)
