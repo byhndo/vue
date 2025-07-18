@@ -191,8 +191,32 @@ methods: {
     goToPhotos() {
       this.bg = 'photos';
       this.$router.push('/photos');
-    }
-  },
+    },
+
+
+animatePath() {
+    const paths = {
+      bio: {
+        start: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
+        mid:   "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",
+        end:   "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
+      },
+      photos: {
+        start: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",
+        mid:   "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
+        end:   "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
+      }
+    };
+    const path = this.bg === "bio" ? this.$refs.bioPath : this.$refs.photosPath;
+    const shape = paths[this.bg];
+
+    const tl = gsap.timeline();
+    tl.set(path, { attr: { d: shape.start } })
+      .to(path, { duration: 1.1, ease: "power3.in", attr: { d: shape.mid } })
+      .to(path, { duration: 0.5, ease: "power1", attr: { d: shape.end } });
+}
+	
+},
 
 watch: {
     $route(to) {
@@ -205,7 +229,7 @@ watch: {
       if (this.firstLoad) return;
 
       Vue.nextTick(() => {
-        bgPath(this.bg);
+        this.animatePath();
       });
     }
   }
@@ -424,7 +448,7 @@ gsap.to('.header', {
     }
 });
 
-function bgPath(bg) {
+/*function bgPath(bg) {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 	
@@ -461,7 +485,7 @@ const photosPath = document.getElementById("photosPath");
   bioBtn.addEventListener("click", () => { tl1.restart(); });
   photosBtn.addEventListener("click", () => { tl2.restart(); }); 
 	
-}
+} */
 		
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
