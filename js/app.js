@@ -140,8 +140,8 @@ const { createRouter, createWebHistory } = VueRouter;
 
 const app = Vue.createApp({ 
 setup(){
-const bioPath = ref(null);
-const photosPath = ref(null);
+const bioPath = ref();
+const photosPath = ref();
 
 //const bioPath = document.getElementById("bioPath");
 //const photosPath = document.getElementById("photosPath");
@@ -160,16 +160,14 @@ const photosPath = ref(null);
     }
   };
            
-    let tl1, tl2;
-
     onMounted(() => {
       
-      tl1 = gsap.timeline({ paused: true })
+     const tl1 = gsap.timeline({ paused: true })
         .set(bioPath.value, { attr: { d: paths.step1.unfilled } })
         .to(bioPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
         .to(bioPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step1.filled } });
 
-      tl2 = gsap.timeline({ paused: true })
+     const tl2 = gsap.timeline({ paused: true })
         .set(photosPath.value, { attr: { d: paths.step2.unfilled } })
         .to(photosPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
         .to(photosPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
