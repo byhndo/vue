@@ -138,13 +138,16 @@ $('html, body').css({
 const { createApp, ref, onMounted } = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 
-const app = Vue.createApp({ 
-setup(){
-const bioPath = ref();
-const photosPath = ref();
-
-//const bioPath = document.getElementById("bioPath");
-//const photosPath = document.getElementById("photosPath");
+const app = Vue.createApp({ 	
+  data() {
+    return {
+      bg: 'bio',
+      firstLoad: true 
+    };
+  },
+mounted() {
+const bioPath = document.getElementById("bioPath");
+const photosPath = document.getElementById("photosPath");
 	
     const paths = {
     step1: {
@@ -159,9 +162,7 @@ const photosPath = ref();
       filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
     }
   };
-           
-    onMounted(() => {
-      
+                    
      const tl1 = gsap.timeline({ paused: true })
         .set(bioPath.value, { attr: { d: paths.step1.unfilled } })
         .to(bioPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
@@ -181,21 +182,7 @@ const photosPath = ref();
       photosBtn.addEventListener("click", () => {
         tl2.restart();
       });
-    });
-
-    return {
-      bioPath,
-      photosPath
-    };	
-},
 	
-  data() {
-    return {
-      bg: 'bio',
-      firstLoad: true 
-    };
-  },
-mounted() {
     if (this.$route.path.includes('bio')) {
       this.bg = 'bio';
     } else if (this.$route.path.includes('photos')) {
