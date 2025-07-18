@@ -192,7 +192,8 @@ const app = Vue.createApp({
     }
     
     Vue.nextTick(() => {
-      bgPath(this.bg);
+    //  bgPath(this.bg);
+     bgPath(newVal);
     });
   }
  }
