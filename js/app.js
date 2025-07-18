@@ -162,8 +162,7 @@ const app = Vue.createApp({
     },
     methods: {        
         afterEnter(el) {
-            setupReveal(el);
-	    bgPath();
+            setupReveal(el);	    
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
@@ -401,7 +400,6 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
-function bgPath() {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
@@ -466,9 +464,7 @@ const photosPath = document.getElementById("photosPath");
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
   }); 
-	
-}
-	
+		
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
 	
