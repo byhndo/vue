@@ -1,6 +1,6 @@
 const Photos = {
   template: `
-  <div> 
+  <div class="view"> 
 
 
 <!-- sub2 -->
