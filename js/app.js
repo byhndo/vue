@@ -156,7 +156,7 @@ mounted() {
     this.firstLoad = false;
   });
 
-Vue.nextTick(() => {
+/*Vue.nextTick(() => {
     document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
       button.addEventListener('click', function () {
         const sectionId = this.getAttribute('data-hash');
@@ -172,9 +172,9 @@ Vue.nextTick(() => {
         }
       });
     });
-  });
+  });*/
 	
-},   
+},  
 
     methods: {        
         afterEnter(el) {
@@ -192,7 +192,7 @@ Vue.nextTick(() => {
             this.$router.push('/photos');
          }
         },     
-watch: {
+/*watch: {
   $route(to) {
     if (to.path.includes('bio')) {
       this.bg = 'bio';
@@ -206,13 +206,13 @@ watch: {
       bgPath(this.bg);
     });
   }
-}
+}*/
 	
 });
 app.use(router)
 app.mount("#app");	
 
-/*const lenis = new Lenis({
+const lenis = new Lenis({
  duration: 2,
  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
  orientation: "vertical",
@@ -237,7 +237,7 @@ gsap.ticker.add((time)=>{
   lenis.raf(time * 1000)
 })
 
-gsap.ticker.lagSmoothing(0); */
+gsap.ticker.lagSmoothing(0); 
 			
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
