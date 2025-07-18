@@ -122,6 +122,10 @@ async function animateLoader() {
 }
 
 animateLoader();
+
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
 			
 function contentShow() {
 gsap.registerPlugin(ScrollTrigger);
@@ -133,11 +137,7 @@ const delaytl = .5;
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
-})
-			
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
+})		
 
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
@@ -160,7 +160,6 @@ mounted() {
     this.firstLoad = false;
   });
 
-
 Vue.nextTick(() => {
     document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
       button.addEventListener('click', function () {
@@ -181,8 +180,6 @@ Vue.nextTick(() => {
 	
 },   
 
-
-	
     methods: {        
         afterEnter(el) {
             setupReveal(el);	    
