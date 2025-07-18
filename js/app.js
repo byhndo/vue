@@ -710,7 +710,7 @@ tl.set(quote, {
 });
 	 
 tl.to(quote, {
- ease: Expo.easeIn,
+ ease: "expo.in",
  autoAlpha:1,
  opacity: 1,
  scaleY: 1,
