@@ -183,6 +183,12 @@ const { createRouter, createWebHistory } = VueRouter;
             } else if (to.path.includes('photos')) {
               this.bg = 'photos';
            }
+            nextTick(() => {
+            const el = document.querySelector('.view');
+              if (el) {
+              bgPath(el); 
+              }
+           });		    
           }
         },
     data() {
