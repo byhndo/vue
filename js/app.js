@@ -177,16 +177,19 @@ Vue.nextTick(() => {
         }
       });
     });
-  });	
-},   
+  });
 	
-methods: {        
+},   
+
+
+	
+    methods: {        
         afterEnter(el) {
             setupReveal(el);	    
-        },	
+        },
         afterLeave(el) {
-           el.ctx && el.ctx.revert(); 	
-	   delete el.ctx;	
+            el.ctx && el.ctx.revert();
+            delete el.ctx;			
         },
         goToBio() {
             this.bg = 'bio';
