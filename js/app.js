@@ -167,13 +167,11 @@ setup() {
       .to(photosPath, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
       .to(photosPath, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
 
-    document.getElementById("btn-nav-1").addEventListener("click", () => {
-      tl1.restart();
-    });
-
-    document.getElementById("btn-nav-2").addEventListener("click", () => {
-      tl2.restart();
-    });
+    const bioBtn = document.getElementById("btn-nav-1");
+    const bioPhotos = document.getElementById("btn-nav-2");
+	    
+    bioBtn.addEventListener("click", () => {tl1.restart();});
+    photosBtn.addEventListener("click", () => {tl2.restart();});
   });
 
   return {}; 
