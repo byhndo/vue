@@ -586,11 +586,6 @@ p.sub2 {
  visibility:hidden;
  font-family:var(--font2);
  text-align:center;
-}
-
-.quote span{
- display: inline-block;
- opacity:0;
  font-size:125%;
  font-weight:400;
  color:inherit;
@@ -617,12 +612,6 @@ p.sub2 {
 }
 
 .grid {
-/* --auto-grid-min-size:10rem;
- display: grid;  
- grid-template-columns: repeat(2, 1fr);
- grid-template-rows:
- gap:3.5vw;	
- masonry;*/
  columns: 2;
  column-fill: balance; 
  column-gap: 3.5vw;
