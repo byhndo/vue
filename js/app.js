@@ -459,7 +459,8 @@ const photosPath = document.getElementById("photosPath");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
   bioBtn.addEventListener("click", () => { tl1.restart(); });
-  photosBtn.addEventLis
+  photosBtn.addEventListener("click", () => { tl2.restart(); });
+
     
     
 
