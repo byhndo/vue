@@ -680,10 +680,13 @@ tl.to(two, {
       	 
 const RevealBoxs3 = container.querySelectorAll(".box3");
  RevealBoxs3.forEach((box3) => {
- const quotes = box3.querySelectorAll(".quote");  
- quotes.forEach((quote) => { quote.innerHTML = quote.textContent.replace(/\S/g, "<span>$&</span>"); });
- const quoteSpans = box3.querySelectorAll(".quote span");
 
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+	 
+ const quote = box3.querySelectorAll(".quote, .quote span");  
+ 
  let tl = gsap.timeline({
  scrollTrigger: {
   trigger: box3,
@@ -694,11 +697,11 @@ const RevealBoxs3 = container.querySelectorAll(".box3");
  }, delay: delaytl
  });  
 	 
-tl.set(quoteSpans, {
+tl.set(quote, {
  scaleY: 0
 });
 	 
-tl.to(quoteSpans, {
+tl.to(quote, {
  ease: "expo.in",
  autoAlpha:1,
  opacity: 1,
