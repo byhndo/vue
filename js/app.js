@@ -189,15 +189,8 @@ Vue.nextTick(() => {
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-            delete el.ctx;
-
-	    el.timeline && el.timeline.kill();
-            delete el.timeline;
+            delete el.ctx;			
         },
-	/*onLeaveCancelled(el) {
-            el.ctx && el.ctx.revert();
-            delete el.ctx;
-	},*/
         goToBio() {
             this.bg = 'bio';
             this.$router.push('/bio');
@@ -710,7 +703,7 @@ tl.set(quote, {
 });
 	 
 tl.to(quote, {
- ease: "expo.in",
+ ease: Expo.easeIn,
  autoAlpha:1,
  opacity: 1,
  scaleY: 1,
