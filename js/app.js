@@ -133,16 +133,12 @@ const delaytl = .5;
 $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
-})		
+})	
 
-const { createApp, ref, onMounted } = Vue;
-const { createRouter, createWebHistory } = VueRouter;
 
-const app = Vue.createApp({ 
-setup() {
-  onMounted(() => {
-    const bioPath = document.getElementById("bioPath");
-    const photosPath = document.getElementById("photosPath");
+
+const bioPath = document.getElementById("bioPath");
+const photosPath = document.getElementById("photosPath");
 
     const paths = {
       step1: {
@@ -174,9 +170,15 @@ setup() {
     photosBtn.addEventListener("click", () => {tl2.restart();});
   });
 
-  return {}; 
-},
 
+
+
+	
+
+const { createApp, ref, onMounted } = Vue;
+const { createRouter, createWebHistory } = VueRouter;
+
+const app = Vue.createApp({ 
   data() {
     return {
       bg: 'bio',
@@ -229,8 +231,7 @@ methods: {
     goToPhotos() {
       this.bg = 'photos';
       this.$router.push('/photos');
-    },
-	
+    }	
 },
 
 watch: {
