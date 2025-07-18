@@ -416,6 +416,8 @@ function bgPath(bg) {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
+if (!bioPath || !photosPath) return;
+	
     const paths = {
     step1: {
       unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
@@ -431,8 +433,9 @@ const photosPath = document.getElementById("photosPath");
       filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
     }
   };
-	
- const tl1 = gsap.timeline({ paused: true })
+
+if (bg === 'bio') {
+/* const tl1 =*/ gsap.timeline({ paused: true })
 
  .set(bioPath, {
       attr: { d: paths.step1.unfilled }
@@ -450,7 +453,10 @@ const photosPath = document.getElementById("photosPath");
       attr: { d: paths.step1.filled }
     });
 
-   const tl2 = gsap.timeline({paused: true}) 
+}
+
+if (bg === 'photos') {
+  /* const tl2 =*/ gsap.timeline({paused: true}) 
 
     .set(photosPath, {
       attr: { d: paths.step2.unfilled }
@@ -468,7 +474,7 @@ const photosPath = document.getElementById("photosPath");
       attr: { d: paths.step2.filled }
     });  
 	  
-  const bioBtn = document.getElementById("btn-nav-1");
+/*  const bioBtn = document.getElementById("btn-nav-1");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
   bioBtn.addEventListener("click", () => {
@@ -476,8 +482,9 @@ const photosPath = document.getElementById("photosPath");
   });
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
-  }); 
-
+  }); */
+}
+	
 }
 		
 function setupReveal(container) {
