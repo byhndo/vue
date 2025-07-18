@@ -179,7 +179,11 @@ methods: {
       setupReveal(el);	    
     },
     afterLeave(el) {
-      el.ctx && el.ctx.revert();          			
+     if (el.ctx) {
+    el.ctx.revert(); 
+    delete el.ctx;
+     } 
+    gsap.killTweensOf("*");
     },
     goToBio() {
       this.bg = 'bio';
