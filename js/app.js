@@ -194,10 +194,10 @@ Vue.nextTick(() => {
 	    el.timeline && el.timeline.kill();
             delete el.timeline;
         },
-	onLeaveCancelled(el) {
+	/*onLeaveCancelled(el) {
             el.ctx && el.ctx.revert();
             delete el.ctx;
-	},
+	},*/
         goToBio() {
             this.bg = 'bio';
             this.$router.push('/bio');
