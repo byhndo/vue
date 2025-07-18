@@ -178,6 +178,9 @@ Vue.nextTick(() => {
 	
 methods: {        
         afterEnter(el) {
+	    $(el).find('.quote').each(function () {
+              $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+            });
             setupReveal(el);	    
         },
         afterLeave(el) {
@@ -679,12 +682,7 @@ tl.to(two, {
 });      
       	 
 const RevealBoxs3 = container.querySelectorAll(".box3");
- RevealBoxs3.forEach((box3) => {
-
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
-	 
+ RevealBoxs3.forEach((box3) => {	 
  const quote = box3.querySelectorAll(".quote, .quote span");  
  
  let tl = gsap.timeline({
