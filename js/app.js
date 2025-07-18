@@ -138,51 +138,54 @@ $('html, body').css({
 const { createApp, ref, onMounted } = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 
-const app = Vue.createApp({ 	
+const app = Vue.createApp({ 
+setup() {
+  onMounted(() => {
+    const bioPath = document.getElementById("bioPath");
+    const photosPath = document.getElementById("photosPath");
+
+    const paths = {
+      step1: {
+        unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
+        inBetween: "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",
+        filled: "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
+      },
+      step2: {
+        unfilled: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",
+        inBetween: "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
+        filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
+      }
+    };
+
+    const tl1 = gsap.timeline({ paused: true })
+      .set(bioPath, { attr: { d: paths.step1.unfilled } })
+      .to(bioPath, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
+      .to(bioPath, { duration: 0.5, ease: "power1", attr: { d: paths.step1.filled } });
+
+    const tl2 = gsap.timeline({ paused: true })
+      .set(photosPath, { attr: { d: paths.step2.unfilled } })
+      .to(photosPath, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
+      .to(photosPath, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
+
+    document.getElementById("btn-nav-1").addEventListener("click", () => {
+      tl1.restart();
+    });
+
+    document.getElementById("btn-nav-2").addEventListener("click", () => {
+      tl2.restart();
+    });
+  });
+
+  return {}; 
+},
+
   data() {
     return {
       bg: 'bio',
       firstLoad: true 
     };
   },
-mounted() {
-const bioPath = document.getElementById("bioPath");
-const photosPath = document.getElementById("photosPath");
-	
-    const paths = {
-    step1: {
-      unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
-      inBetween: "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",             
-      filled: "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
-    },
-
-    step2: {
-      unfilled: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",  
-      inBetween: "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
-      filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
-    }
-  };
-                    
-     const tl1 = gsap.timeline({ paused: true })
-        .set(bioPath.value, { attr: { d: paths.step1.unfilled } })
-        .to(bioPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
-        .to(bioPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step1.filled } });
-
-     const tl2 = gsap.timeline({ paused: true })
-        .set(photosPath.value, { attr: { d: paths.step2.unfilled } })
-        .to(photosPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
-        .to(photosPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
-
-      const bioBtn = document.getElementById("btn-nav-1");
-      const photosBtn = document.getElementById("btn-nav-2");
-		    
-      bioBtn.addEventListener("click", () => {
-        tl1.restart();
-      });
-      photosBtn.addEventListener("click", () => {
-        tl2.restart();
-      });
-	
+mounted() {         	
     if (this.$route.path.includes('bio')) {
       this.bg = 'bio';
     } else if (this.$route.path.includes('photos')) {
