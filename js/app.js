@@ -183,12 +183,9 @@ Vue.nextTick(() => {
 methods: {        
         afterEnter(el) {
             setupReveal(el);	    
-        },
-	beforeLeave(el) {
-            el.ctx && el.ctx.revert();
-        },
+        },	
         afterLeave(el) {
-            delete el.ctx;			
+           el.ctx && el.ctx.revert(); 			
         },
         goToBio() {
             this.bg = 'bio';
