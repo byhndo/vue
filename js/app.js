@@ -160,35 +160,34 @@ const photosPath = ref(null);
     }
   };
 
- const tl1 = gsap.timeline({ paused: true })
+           
+    let tl1, tl2;
 
- .set(bioPath, {
-    attr: { d: paths.step1.unfilled }})
-    .to(bioPath,{duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween }}, 0)
-    .to(bioPath, {duration: .5, ease: "power1", attr: { d: paths.step1.filled }});
+    onMounted(() => {
+      
+      tl1 = gsap.timeline({ paused: true })
+        .set(bioPath.value, { attr: { d: paths.step1.unfilled } })
+        .to(bioPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
+        .to(bioPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step1.filled } });
 
-  const tl2 = gsap.timeline({paused: true}) 
+      tl2 = gsap.timeline({ paused: true })
+        .set(photosPath.value, { attr: { d: paths.step2.unfilled } })
+        .to(photosPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
+        .to(photosPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
+      
+      document.getElementById("btn-nav-1")?.addEventListener("click", () => {
+        tl1.restart();
+      });
+      document.getElementById("btn-nav-2")?.addEventListener("click", () => {
+        tl2.restart();
+      });
+    });
 
-    .set(photosPath, {attr: { d: paths.step2.unfilled }})
-    .to(photosPath, {duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween }}, 0)
-    .to(photosPath, {duration: .5, ease: "power1", attr: { d: paths.step2.filled }});  
-
-  const bioBtn = document.getElementById("btn-nav-1");
-  const photosBtn = document.getElementById("btn-nav-2"); 
-  
-  bioBtn.addEventListener("click", () => { tl1.restart(); });
-  photosBtn.addEventListener("click", () => { tl2.restart(); }); 
-	
-	
-
-return {bioPath, photosPath, paths, tl1, tl2, bioBtn, photosBtn };
-
-	
+    return {
+      bioPath,
+      photosPath
+    };	
 },
-
-
-
-
 	
   data() {
     return {
