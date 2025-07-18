@@ -180,10 +180,9 @@ methods: {
     },
     afterLeave(el) {
      if (el.ctx) {
-    el.ctx.revert(); 
-    delete el.ctx;
+       el.ctx.revert(); 
+       delete el.ctx;
      } 
-    gsap.killTweensOf("*");
     },
     goToBio() {
       this.bg = 'bio';
