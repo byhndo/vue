@@ -159,7 +159,6 @@ const photosPath = ref(null);
       filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
     }
   };
-
            
     let tl1, tl2;
 
@@ -174,11 +173,14 @@ const photosPath = ref(null);
         .set(photosPath.value, { attr: { d: paths.step2.unfilled } })
         .to(photosPath.value, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
         .to(photosPath.value, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
-      
-      document.getElementById("btn-nav-1")?.addEventListener("click", () => {
+
+      const bioBtn = document.getElementById("btn-nav-1");
+      const photosBtn = document.getElementById("btn-nav-2");
+		    
+      bioBtn.addEventListener("click", () => {
         tl1.restart();
       });
-      document.getElementById("btn-nav-2")?.addEventListener("click", () => {
+      photosBtn.addEventListener("click", () => {
         tl2.restart();
       });
     });
