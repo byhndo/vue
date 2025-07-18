@@ -158,6 +158,11 @@ const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 	const app = Vue.createApp({ 	
     methods: {
+        data() {
+          return {
+            bg: 'bio'
+        };
+	},
         afterEnter(el) {
             setupReveal(el);
 	    bgPath(el);
@@ -176,25 +181,14 @@ const { createRouter, createWebHistory } = VueRouter;
          }
         },
 	watch: {
-            $route(to) {
-              if (to.path.includes('bio')) {
-              this.bg = 'bio';
-            } else if (to.path.includes('photos')) {
-              this.bg = 'photos';
-           }
-            nextTick(() => {
+          $route(to) {
+            this.bg = to.path.includes('photos') ? 'photos' : 'bio';
+            Vue.nextTick(() => {
             const el = document.querySelector('.view');
-              if (el) {
-              bgPath(el); 
-              }
-           });		    
-          }
-        },
-    data() {
-        return {
-            bg: 'bio'
-        };
-    }
+              if (el) bgPath(el);
+          });
+         }
+        }    
 });
 app.use(router)
 app.mount("#app");	
