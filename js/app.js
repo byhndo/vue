@@ -177,10 +177,7 @@ Vue.nextTick(() => {
 },   
 	
 methods: {        
-        afterEnter(el) {
-	    $(el).find('.quote').each(function () {
-              $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-            });
+        afterEnter(el) {	
             setupReveal(el);	    
         },
         afterLeave(el) {
@@ -215,7 +212,11 @@ watch: {
 });
 app.use(router)
 app.mount("#app");	
-		
+
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+	
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`);
