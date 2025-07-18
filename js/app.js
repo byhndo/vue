@@ -185,18 +185,18 @@ const app = Vue.createApp({
     } else if (to.path.includes('photos')) {
       this.bg = 'photos';
     }
-
+  },
+  bg(newVal) {
     if (this.firstLoad) {
       this.firstLoad = false;
       return; 
     }
-    
+
     Vue.nextTick(() => {
-    //  bgPath(this.bg);
-     bgPath(newVal);
+      bgPath(newVal); 
     });
   }
- }
+}
 	
 });
 app.use(router)
