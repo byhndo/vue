@@ -139,21 +139,6 @@ $('.quote').each(function(){
   $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
 });
 
-document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
-  button.addEventListener('click', function () {
-    const sectionId = this.getAttribute('data-hash');
-    const targetElement = document.getElementById(sectionId);
-    const headerHeight = document.querySelector('.wrapnav')?.offsetHeight || 0;
-    
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - headerHeight
-      });
-      window.location.hash = sectionId;
-    }
-  });
-});
-
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
@@ -174,7 +159,30 @@ mounted() {
     bgPath(this.bg); 
     this.firstLoad = false;
   });
-},    
+
+
+Vue.nextTick(() => {
+    document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
+      button.addEventListener('click', function () {
+        const sectionId = this.getAttribute('data-hash');
+        const targetElement = document.getElementById(sectionId);
+        const headerHeight = document.querySelector('.wrapnav')?.offsetHeight || 0;
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - headerHeight,
+            behavior: 'auto'
+          });
+          window.location.hash = sectionId;
+        }
+      });
+    });
+  });
+	
+},   
+
+
+	
     methods: {        
         afterEnter(el) {
             setupReveal(el);	    
