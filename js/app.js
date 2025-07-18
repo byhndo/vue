@@ -177,18 +177,17 @@ Vue.nextTick(() => {
         }
       });
     });
-  });
-	
+  });	
 },   
-
-
 	
-    methods: {        
+methods: {        
         afterEnter(el) {
             setupReveal(el);	    
         },
-        afterLeave(el) {
+	beforeLeave(el) {
             el.ctx && el.ctx.revert();
+        },
+        afterLeave(el) {
             delete el.ctx;			
         },
         goToBio() {
