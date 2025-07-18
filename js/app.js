@@ -163,7 +163,7 @@ const app = Vue.createApp({
     methods: {        
         afterEnter(el) {
             setupReveal(el);
-	    bgPath(el);
+	    bgPath();
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
