@@ -93,7 +93,7 @@
 <div class="sub-title">Life Sucks and Then You Die!</div>
 </div>	
 <router-view v-slot="{ Component }">
-<transition appear name="slide-fade" mode="out-in" @after-enter="afterEnter" @after-leave="afterLeave" @leave-cancelled="onLeaveCancelled">                                               
+<transition appear name="slide-fade" mode="out-in" @after-enter="afterEnter" @after-leave="afterLeave">                                               
 <component :is="Component" />
 </transition>
 </router-view>
