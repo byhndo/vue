@@ -401,7 +401,7 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
-function bgPath(el, bg) {
+function bgPath(el) {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
