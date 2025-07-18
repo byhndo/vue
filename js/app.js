@@ -412,6 +412,7 @@ gsap.ticker.add((time)=>{
 
 gsap.ticker.lagSmoothing(0);
 
+function bgPath(bg) {
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 
@@ -476,6 +477,8 @@ const photosPath = document.getElementById("photosPath");
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
   }); 
+
+}
 		
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
