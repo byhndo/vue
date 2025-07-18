@@ -156,13 +156,13 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
 
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
-	const app = Vue.createApp({ 	
-    methods: {
-        data() {
-          return {
-            bg: 'bio'
-        };
-	},
+const app = Vue.createApp({ 
+    data() {
+      return {
+        bg: 'bio'
+      };
+    },
+    methods: {        
         afterEnter(el) {
             setupReveal(el);
 	    bgPath(el);
