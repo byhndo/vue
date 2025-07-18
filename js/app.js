@@ -181,8 +181,7 @@ Vue.nextTick(() => {
             setupReveal(el);	    
         },
         afterLeave(el) {
-            el.ctx && el.ctx.revert();
-            delete el.ctx;			
+            el.ctx && el.ctx.revert();          			
         },
         goToBio() {
             this.bg = 'bio';
@@ -213,7 +212,7 @@ watch: {
 app.use(router)
 app.mount("#app");	
 
-const lenis = new Lenis({
+/*const lenis = new Lenis({
  duration: 2,
  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
  orientation: "vertical",
@@ -238,7 +237,7 @@ gsap.ticker.add((time)=>{
   lenis.raf(time * 1000)
 })
 
-gsap.ticker.lagSmoothing(0);
+gsap.ticker.lagSmoothing(0); */
 			
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
