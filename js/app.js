@@ -159,6 +159,7 @@ const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
     data() {
       return { bg: 'bio'};
+      firstLoad: true
     },
     methods: {        
         afterEnter(el) {
@@ -178,14 +179,24 @@ const app = Vue.createApp({
          }
         },
      watch: {
-         $route(to) {
-           if (to.path.includes('bio')) {
-           this.bg = 'bio';
-           } else if (to.path.includes('photos')) {
-           this.bg = 'photos';
-         }
-        }
-       }
+  $route(to) {
+    if (to.path.includes('bio')) {
+      this.bg = 'bio';
+    } else if (to.path.includes('photos')) {
+      this.bg = 'photos';
+    }
+
+    if (this.firstLoad) {
+      this.firstLoad = false;
+      return; 
+    }
+    
+    Vue.nextTick(() => {
+      bgPath(this.bg);
+    });
+  }
+ }
+	
 });
 app.use(router)
 app.mount("#app");	
