@@ -135,6 +135,10 @@ $('html, body').css({
   'height': 'auto'
 })
 			
+$('.quote').each(function(){
+  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
+});
+
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
@@ -173,24 +177,19 @@ Vue.nextTick(() => {
         }
       });
     });
-  });	
-},   
+  });
 	
-methods: {        
-        afterEnter(el) {	
+},   
+
+
+	
+    methods: {        
+        afterEnter(el) {
             setupReveal(el);	    
         },
         afterLeave(el) {
             el.ctx && el.ctx.revert();
-            delete el.ctx;	
-
-	    const splits = el.querySelectorAll(".box3");
-              splits.forEach(box => {
-                if (box.splitText) {
-                  box.splitText.revert(); 
-                 delete box.splitText;
-             }
-           });
+            delete el.ctx;			
         },
         goToBio() {
             this.bg = 'bio';
@@ -220,11 +219,7 @@ watch: {
 });
 app.use(router)
 app.mount("#app");	
-
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
-	
+		
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`);
@@ -690,44 +685,33 @@ tl.to(two, {
 	   
 });      
       	 
-
 const RevealBoxs3 = container.querySelectorAll(".box3");
-
-    RevealBoxs3.forEach((box3) => {
-      const quote = box3.querySelector(".quote");
-
-      const mySplitText = new SplitText(quote, {
-        type: "words, chars", 
-        charsClass: "char",
-        wordsClass: "word"
-      });
-      
-      box3.splitText = mySplitText;
-
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: box3,
-          toggleActions: once,
-          scrub: 2,
-          start: "top bottom",
-          end: "bottom 50%"
-        },
-        delay: delaytl
-      });
-
-      tl.set(mySplitText.chars, {
-        scaleY: 0
-      });
-
-      tl.to(mySplitText.chars, {
-        ease: "expo.in",
-        autoAlpha: 1,
-        opacity: 1,
-        scaleY: 1,
-        stagger: 0.05
-      });
-    });
-
+ RevealBoxs3.forEach((box3) => {
+ const quote = box3.querySelectorAll(".quote, .quote span");                              
+ let tl = gsap.timeline({
+ scrollTrigger: {
+  trigger: box3,
+  toggleActions: once,
+  scrub:2,
+  start: "top bottom",
+  end : "bottom 50%"
+ }, delay: delaytl
+ });  
+	 
+tl.set(quote, {
+ scaleY: 0
+});
+	 
+tl.to(quote, {
+ ease: Expo.easeIn,
+ autoAlpha:1,
+ opacity: 1,
+ scaleY: 1,
+ stagger: 0.05
+});
+	 	                                                                                                                  
+});
+	 
 const revealContainers = container.querySelectorAll(".item"); 
  revealContainers.forEach((el, i) => {
  let tl = gsap.timeline({ 
