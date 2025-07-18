@@ -212,7 +212,34 @@ watch: {
 });
 app.use(router)
 app.mount("#app");	
-		
+
+const lenis = new Lenis({
+ duration: 2,
+ easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+ orientation: "vertical",
+ direction: "vertical",
+ gestureDirection: "vertical",
+ smooth: 2,
+ smoothWheel: 2,
+ touchMultiplier: 2,
+ wheelMultiplier: 2, 
+ touchInertiaMultiplier: 35,
+ syncTouch: true,
+ autoResize: true
+});
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time)=>{
+  lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0);
+			
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`);
@@ -395,33 +422,6 @@ gsap.to('.header', {
   })
     }
 });
-
-const lenis = new Lenis({
- duration: 2,
- easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
- orientation: "vertical",
- direction: "vertical",
- gestureDirection: "vertical",
- smooth: 2,
- smoothWheel: 2,
- touchMultiplier: 2,
- wheelMultiplier: 2, 
- touchInertiaMultiplier: 35,
- syncTouch: true,
- autoResize: true
-});
-
-lenis.on('scroll', (e) => {
-  console.log(e)
-})
-
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.ticker.add((time)=>{
-  lenis.raf(time * 1000)
-})
-
-gsap.ticker.lagSmoothing(0);
 
 function bgPath(bg) {
 const bioPath = document.getElementById("bioPath");
