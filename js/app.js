@@ -197,7 +197,7 @@ Vue.nextTick(() => {
 	onLeaveCancelled(el) {
             el.ctx && el.ctx.revert();
             delete el.ctx;
-	}
+	},
         goToBio() {
             this.bg = 'bio';
             this.$router.push('/bio');
