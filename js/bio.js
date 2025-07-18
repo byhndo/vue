@@ -1,6 +1,6 @@
 const Bio = {
   template: `
-  <div class> 
+  <div> 
 
 
 <!-- sub1 -->
