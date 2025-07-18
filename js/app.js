@@ -178,7 +178,7 @@ const app = Vue.createApp({
             this.$router.push('/photos');
          }
         },
-	watch: {
+     watch: {
          $route(to) {
            if (to.path.includes('bio')) {
            this.bg = 'bio';
@@ -420,8 +420,8 @@ const photosPath = document.getElementById("photosPath");
       filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
     }
   };
-if (bg === 'bio') {	
- // const tl1 = gsap.timeline({ paused: true })
+	
+ const tl1 = gsap.timeline({ paused: true })
 
  .set(bioPath, {
       attr: { d: paths.step1.unfilled }
@@ -438,8 +438,8 @@ if (bg === 'bio') {
       ease: "power1",
       attr: { d: paths.step1.filled }
     });
-} else if (bg === 'photos') {  
-//  const tl2 = gsap.timeline({paused: true}) 
+
+   const tl2 = gsap.timeline({paused: true}) 
 
     .set(photosPath, {
       attr: { d: paths.step2.unfilled }
@@ -459,7 +459,7 @@ if (bg === 'bio') {
 
 }	
   
-/*  const bioBtn = document.getElementById("btn-nav-1");
+  const bioBtn = document.getElementById("btn-nav-1");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
   bioBtn.addEventListener("click", () => {
@@ -467,7 +467,7 @@ if (bg === 'bio') {
   });
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
-  }); */
+  }); 
 	
 }
 	
