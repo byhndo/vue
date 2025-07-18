@@ -135,10 +135,6 @@ $('html, body').css({
   'height': 'auto'
 })
 			
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
-
 const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
@@ -177,13 +173,10 @@ Vue.nextTick(() => {
         }
       });
     });
-  });
-	
+  });	
 },   
-
-
 	
-    methods: {        
+methods: {        
         afterEnter(el) {
             setupReveal(el);	    
         },
@@ -687,7 +680,10 @@ tl.to(two, {
       	 
 const RevealBoxs3 = container.querySelectorAll(".box3");
  RevealBoxs3.forEach((box3) => {
- const quote = box3.querySelectorAll(".quote, .quote span");                              
+ const quotes = box3.querySelectorAll(".quote");  
+ quotes.forEach((quote) => { quote.innerHTML = quote.textContent.replace(/\S/g, "<span>$&</span>"); });
+ const quoteSpans = box3.querySelectorAll(".quote span");
+
  let tl = gsap.timeline({
  scrollTrigger: {
   trigger: box3,
@@ -698,12 +694,12 @@ const RevealBoxs3 = container.querySelectorAll(".box3");
  }, delay: delaytl
  });  
 	 
-tl.set(quote, {
+tl.set(quoteSpans, {
  scaleY: 0
 });
 	 
-tl.to(quote, {
- ease: Expo.easeIn,
+tl.to(quoteSpans, {
+ ease: "expo.in",
  autoAlpha:1,
  opacity: 1,
  scaleY: 1,
