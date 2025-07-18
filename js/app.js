@@ -435,7 +435,7 @@ if (!bioPath || !photosPath) return;
   };
 
 if (bg === 'bio') {
-/* const tl1 =*/ gsap.timeline({ paused: true })
+ const tl1 = gsap.timeline({ paused: true })
 
  .set(bioPath, {
       attr: { d: paths.step1.unfilled }
@@ -456,7 +456,7 @@ if (bg === 'bio') {
 }
 
 if (bg === 'photos') {
-  /* const tl2 =*/ gsap.timeline({paused: true}) 
+  const tl2 = gsap.timeline({paused: true}) 
 
     .set(photosPath, {
       attr: { d: paths.step2.unfilled }
@@ -473,8 +473,9 @@ if (bg === 'photos') {
       ease: "power1",
       attr: { d: paths.step2.filled }
     });  
-	  
-/*  const bioBtn = document.getElementById("btn-nav-1");
+
+}
+  const bioBtn = document.getElementById("btn-nav-1");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
   bioBtn.addEventListener("click", () => {
@@ -482,8 +483,8 @@ if (bg === 'photos') {
   });
   photosBtn.addEventListener("click", () => {         
     tl2.restart();
-  }); */
-}
+  }); 
+
 	
 }
 		
