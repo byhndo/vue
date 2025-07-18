@@ -181,14 +181,14 @@ const { createRouter, createWebHistory } = VueRouter;
          }
         },
 	watch: {
-          $route(to) {
-            this.bg = to.path.includes('photos') ? 'photos' : 'bio';
-            Vue.nextTick(() => {
-            const el = document.querySelector('.view');
-              if (el) bgPath(el);
-          });
+         $route(to) {
+           if (to.path.includes('bio')) {
+           this.bg = 'bio';
+           } else if (to.path.includes('photos')) {
+           this.bg = 'photos';
          }
-        }    
+        }
+       }
 });
 app.use(router)
 app.mount("#app");	
