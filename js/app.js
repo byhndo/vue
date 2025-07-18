@@ -174,8 +174,17 @@ const { createRouter, createWebHistory } = VueRouter;
         goToPhotos() {
             this.bg = 'photos';
             this.$router.push('/photos');
-        }
-    },
+         }
+        },
+	watch: {
+            $route(to) {
+              if (to.path.includes('bio')) {
+              this.bg = 'bio';
+            } else if (to.path.includes('photos')) {
+              this.bg = 'photos';
+           }
+          }
+        },
     data() {
         return {
             bg: 'bio'
