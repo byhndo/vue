@@ -154,7 +154,37 @@ document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
     }
   });
 });
-	
+
+const { createApp, ref, onMounted} = Vue;
+const { createRouter, createWebHistory } = VueRouter;
+	const app = Vue.createApp({ 	
+    methods: {
+        afterEnter(el) {
+            setupReveal(el);
+	    bgPath(el);
+        },
+        afterLeave(el) {
+            el.ctx && el.ctx.revert();
+            delete el.ctx;			
+        },
+        goToBio() {
+            this.bg = 'bio';
+            this.$router.push('/bio');
+        },
+        goToPhotos() {
+            this.bg = 'photos';
+            this.$router.push('/photos');
+        }
+    },
+    data() {
+        return {
+            bg: 'bio'
+        };
+    }
+});
+app.use(router)
+app.mount("#app");	
+		
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`);
@@ -434,38 +464,7 @@ const photosPath = document.getElementById("photosPath");
   });
 	
 }
-
-const { createApp, ref, onMounted} = Vue;
-const { createRouter, createWebHistory } = VueRouter;
 	
-const app = Vue.createApp({ 	
-    methods: {
-        afterEnter(el) {
-            setupReveal(el);
-	    bgPath(el);
-        },
-        afterLeave(el) {
-            el.ctx && el.ctx.revert();
-            delete el.ctx;			
-        },
-        goToBio() {
-            this.bg = 'bio';
-            this.$router.push('/bio');
-        },
-        goToPhotos() {
-            this.bg = 'photos';
-            this.$router.push('/photos');
-        }
-    },
-    data() {
-        return {
-            bg: 'bio'
-        };
-    }
-});
-app.use(router)
-app.mount("#app");	
-  	
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
 	
