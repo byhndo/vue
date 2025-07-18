@@ -135,78 +135,77 @@ $('html, body').css({
   'height': 'auto'
 })		
 
-const { createApp, ref, onMounted} = Vue;
+const { createApp, ref, onMounted } = Vue;
 const { createRouter, createWebHistory } = VueRouter;
+
 const app = Vue.createApp({ 
-data() {
-  return {
-    bg: 'bio',
-    firstLoad: true 
-  };
-},
+  data() {
+    return {
+      bg: 'bio',
+      firstLoad: true 
+    };
+  },
 mounted() {
-  if (this.$route.path.includes('bio')) {
-    this.bg = 'bio';
-  } else if (this.$route.path.includes('photos')) {
-    this.bg = 'photos';
-  }
-
-  Vue.nextTick(() => {
-    bgPath(this.bg); 
-    this.firstLoad = false;
-  });
-
-/*Vue.nextTick(() => {
-    document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
-      button.addEventListener('click', function () {
-        const sectionId = this.getAttribute('data-hash');
-        const targetElement = document.getElementById(sectionId);
-        const headerHeight = document.querySelector('.wrapnav')?.offsetHeight || 0;
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - headerHeight,
-            behavior: 'auto'
-          });
-          window.location.hash = sectionId;
-        }
-      });
-    });
-  });*/
-	
-},  
-
-    methods: {        
-        afterEnter(el) {
-            setupReveal(el);	    
-        },
-        afterLeave(el) {
-            el.ctx && el.ctx.revert();          			
-        },
-        goToBio() {
-            this.bg = 'bio';
-            this.$router.push('/bio');
-        },
-        goToPhotos() {
-            this.bg = 'photos';
-            this.$router.push('/photos');
-         }
-        },     
-/*watch: {
-  $route(to) {
-    if (to.path.includes('bio')) {
+    if (this.$route.path.includes('bio')) {
       this.bg = 'bio';
-    } else if (to.path.includes('photos')) {
+    } else if (this.$route.path.includes('photos')) {
       this.bg = 'photos';
     }
 
-    if (this.firstLoad) return;
+Vue.nextTick(() => {
+      bgPath(this.bg); 
+      this.firstLoad = false;
 
-    Vue.nextTick(() => {
-      bgPath(this.bg);
+document.querySelectorAll('#btn-nav-1, #btn-nav-2').forEach(button => {
+        button.addEventListener('click', function () {
+          const sectionId = this.getAttribute('data-hash');
+          const targetElement = document.getElementById(sectionId);
+          const headerHeight = document.querySelector('.wrapnav')?.offsetHeight || 0;
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - headerHeight,
+              behavior: 'auto'
+            });
+            window.location.hash = sectionId;
+          }
+        });
+      });
     });
+  },
+
+methods: {        
+    afterEnter(el) {
+      setupReveal(el);	    
+    },
+    afterLeave(el) {
+      el.ctx && el.ctx.revert();          			
+    },
+    goToBio() {
+      this.bg = 'bio';
+      this.$router.push('/bio');
+    },
+    goToPhotos() {
+      this.bg = 'photos';
+      this.$router.push('/photos');
+    }
+  },
+
+watch: {
+    $route(to) {
+      if (to.path.includes('bio')) {
+        this.bg = 'bio';
+      } else if (to.path.includes('photos')) {
+        this.bg = 'photos';
+      }
+
+      if (this.firstLoad) return;
+
+      Vue.nextTick(() => {
+        bgPath(this.bg);
+      });
+    }
   }
-}*/
 	
 });
 app.use(router)
