@@ -185,15 +185,14 @@ const app = Vue.createApp({
     } else if (to.path.includes('photos')) {
       this.bg = 'photos';
     }
-  },
-  bg(newVal) {
-    if (this.firstLoad) {
+
+   if (this.firstLoad) {
       this.firstLoad = false;
       return; 
     }
 
-    Vue.nextTick(() => {
-      bgPath(newVal); 
+   Vue.nextTick(() => {
+      bgPath(this.bg);
     });
   }
 }
