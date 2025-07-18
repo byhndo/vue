@@ -425,38 +425,43 @@ gsap.to('.header', {
 });
 
 
+
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
-
+	
     const paths = {
-      step1: {
-        unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
-        inBetween: "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",
-        filled: "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
-      },
-      step2: {
-        unfilled: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",
-        inBetween: "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
-        filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
-      }
-    };
+    step1: {
+      unfilled: "M 0 0 h 0 c 0 50 0 50 0 100 H 0 V 0 Z",
+      inBetween: "M 0 0 h 33 c -30 54 113 65 0 100 H 0 V 0 Z",             
+      filled: "M 0 0 h 100 c 0 50 0 50 0 100 H 0 V 0 Z"
+    },
 
-    const tl1 = gsap.timeline({ paused: true })
-      .set(bioPath, { attr: { d: paths.step1.unfilled } })
-      .to(bioPath, { duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween } }, 0)
-      .to(bioPath, { duration: 0.5, ease: "power1", attr: { d: paths.step1.filled } });
+    step2: {
+      unfilled: "M 100 0 h 0 c 0 50 0 50 0 100 H 100 V 0 Z",  
+      inBetween: "M 100 0 h -33 c 30 54 -113 65 0 100 H 100 V 0 Z",
+      filled: "M 100 0 h -100 c 0 50 0 50 0 100 H 100 V 0 Z"
+    }
+  };
 
-    const tl2 = gsap.timeline({ paused: true })
-      .set(photosPath, { attr: { d: paths.step2.unfilled } })
-      .to(photosPath, { duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween } }, 0)
-      .to(photosPath, { duration: 0.5, ease: "power1", attr: { d: paths.step2.filled } });
+ const tl1 = gsap.timeline({ paused: true })
 
-    const bioBtn = document.getElementById("btn-nav-1");
-    const bioPhotos = document.getElementById("btn-nav-2");
-	    
-    bioBtn.addEventListener("click", () => {tl1.restart();});
-    photosBtn.addEventListener("click", () => {tl2.restart();});
-  });
+    .set(bioPath, {attr: { d: paths.step1.unfilled }})
+    .to(bioPath,{duration: 1.1, ease: "power3.in", attr: { d: paths.step1.inBetween }}, 0)
+    .to(bioPath, {duration: .5, ease: "power1", attr: { d: paths.step1.filled }});
+
+  const tl2 = gsap.timeline({paused: true}) 
+
+    .set(photosPath, {attr: { d: paths.step2.unfilled }})
+    .to(photosPath, {duration: 1.1, ease: "power3.in", attr: { d: paths.step2.inBetween }}, 0)
+    .to(photosPath, {duration: .5, ease: "power1", attr: { d: paths.step2.filled }});  
+
+  const bioBtn = document.getElementById("btn-nav-1");
+  const photosBtn = document.getElementById("btn-nav-2"); 
+  
+  bioBtn.addEventListener("click", () => { tl1.restart(); });
+  photosBtn.addEventLis
+    
+    
 
 	
 function setupReveal(container) {
