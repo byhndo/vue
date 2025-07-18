@@ -122,10 +122,6 @@ async function animateLoader() {
 }
 
 animateLoader();
-
-$('.quote').each(function(){
-  $(this).html($(this).text().replace(/\S/g, "<span>$&</span>"));
-});
 			
 function contentShow() {
 gsap.registerPlugin(ScrollTrigger);
@@ -684,7 +680,7 @@ tl.to(two, {
       	 
 const RevealBoxs3 = container.querySelectorAll(".box3");
  RevealBoxs3.forEach((box3) => {
- const quote = box3.querySelectorAll(".quote, .quote span");                              
+ const quote = box3.querySelectorAll(".quote");                              
  let tl = gsap.timeline({
  scrollTrigger: {
   trigger: box3,
@@ -700,11 +696,10 @@ tl.set(quote, {
 });
 	 
 tl.to(quote, {
- ease: Expo.easeIn,
+ ease: "expo.in",
  autoAlpha:1,
  opacity: 1,
- scaleY: 1,
- stagger: 0.05
+ scaleY: 1
 });
 	 	                                                                                                                  
 });
