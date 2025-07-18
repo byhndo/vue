@@ -126,36 +126,6 @@ animateLoader();
 			
 function contentShow() {
 gsap.registerPlugin(ScrollTrigger);
-const { createApp, ref, onMounted} = Vue;
-const { createRouter, createWebHistory } = VueRouter;
-	
-const app = Vue.createApp({ 	
-    methods: {
-        afterEnter(el) {
-            setupReveal(el);
-        },
-        afterLeave(el) {
-            el.ctx && el.ctx.revert();
-            delete el.ctx;			
-        },
-        goToBio() {
-            this.bg = 'bio';
-            this.$router.push('/bio');
-        },
-        goToPhotos() {
-            this.bg = 'photos';
-            this.$router.push('/photos');
-        }
-    },
-    data() {
-        return {
-            bg: 'bio'
-        };
-    }
-});
-app.use(router)
-app.mount("#app");
-	
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
 const once = "play none none reset";
@@ -465,6 +435,36 @@ const photosPath = document.getElementById("photosPath");
 	
 }
 
+const { createApp, ref, onMounted} = Vue;
+const { createRouter, createWebHistory } = VueRouter;
+	
+const app = Vue.createApp({ 	
+    methods: {
+        afterEnter(el) {
+            setupReveal(el);
+	    bgPath(el);
+        },
+        afterLeave(el) {
+            el.ctx && el.ctx.revert();
+            delete el.ctx;			
+        },
+        goToBio() {
+            this.bg = 'bio';
+            this.$router.push('/bio');
+        },
+        goToPhotos() {
+            this.bg = 'photos';
+            this.$router.push('/photos');
+        }
+    },
+    data() {
+        return {
+            bg: 'bio'
+        };
+    }
+});
+app.use(router)
+app.mount("#app");	
   	
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
