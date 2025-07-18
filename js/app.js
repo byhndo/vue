@@ -158,9 +158,7 @@ const { createApp, ref, onMounted} = Vue;
 const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
     data() {
-      return {
-        bg: 'bio'
-      };
+      return { bg: 'bio'};
     },
     methods: {        
         afterEnter(el) {
