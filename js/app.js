@@ -456,9 +456,7 @@ const photosPath = document.getElementById("photosPath");
       ease: "power1",
       attr: { d: paths.step2.filled }
     });  
-
-}	
-  
+	  
   const bioBtn = document.getElementById("btn-nav-1");
   const photosBtn = document.getElementById("btn-nav-2"); 
   
