@@ -185,7 +185,8 @@ methods: {
             setupReveal(el);	    
         },	
         afterLeave(el) {
-           el.ctx && el.ctx.revert(); 			
+           el.ctx && el.ctx.revert(); 	
+	   delete el.ctx;	
         },
         goToBio() {
             this.bg = 'bio';
