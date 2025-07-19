@@ -141,22 +141,9 @@ const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
   data() {
     return {
-      bg: 'bio',
-      firstLoad: true 
+      bg: 'bio'
     };
   },
-mounted() {   	
-if (this.$route.path.includes('bio')) {
-  this.bg = 'bio';
-} else if (this.$route.path.includes('photos')) {
-  this.bg = 'photos';
-}
-
-Vue.nextTick(() => {
-      bgPath(this.bg); 
-      this.firstLoad = false;
-    });
-},
 
 methods: {        
     afterEnter(el) {      
@@ -174,31 +161,14 @@ methods: {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   },
-
     goToPhotos() {
     this.bg = 'photos';
     this.$router.push('/photos').then(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
-},
+}
 
-watch: {
-    $route(to) {
-      if (to.path.includes('bio')) {
-        this.bg = 'bio';
-      } else if (to.path.includes('photos')) {
-        this.bg = 'photos';
-      }
-
-      if (this.firstLoad) return;
-
-      Vue.nextTick(() => {
-        this.animatePath();
-      });
-    }
-  }
-	
 });
 app.use(router)
 app.mount("#app");	
