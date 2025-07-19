@@ -159,11 +159,8 @@ Vue.nextTick(() => {
 },
 
 methods: {        
-    afterEnter(el) {
-      requestAnimationFrame(() => {
-      setupReveal(el);
-        ScrollTrigger.refresh();
-    });
+    afterEnter(el) {      
+      setupReveal(el);       
     },
     afterLeave(el) {
      if (el.ctx) {
@@ -241,7 +238,6 @@ const titletl = gsap.timeline({
       scale: 1,
       yPercent : 0
     }, 0);
-
 	  
 gsap.to(".sub-title", {     
  autoAlpha:1,
