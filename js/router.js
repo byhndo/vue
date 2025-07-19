@@ -7,8 +7,5 @@ const routes = [
 
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    return { top: 0 };
-  },
+  routes
 });
