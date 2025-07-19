@@ -166,7 +166,35 @@ methods: {
     this.$router.push('/photos').then(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-}
+},
+    animatePath() {
+    console.log('animatePath:', this.bg); 
+    },
+},
+mounted() {
+  if (this.$route.path !== '/bio') {
+    this.$router.replace('/bio'); 
+    this.bg = 'bio';
+  } else {
+    this.bg = 'bio';
+    Vue.nextTick(() => {
+      bgPath(this.bg);
+      this.firstLoad = false;
+    });
+  }
+},
+watch: {
+  $route(to) {
+    if (to.path === '/bio') {
+      this.bg = 'bio';
+    } else if (to.path === '/photos') {
+      this.bg = 'photos';
+    }
+    if (this.firstLoad) return;
+    Vue.nextTick(() => {
+      this.animatePath();
+    });
+  }
 }
 
 });
@@ -355,6 +383,7 @@ gsap.to('.header', {
     }
 });
 
+function animtePath(){
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 	
@@ -389,7 +418,8 @@ const photosPath = document.getElementById("photosPath");
   
   bioBtn.addEventListener("click", () => { tl1.restart(); });
   photosBtn.addEventListener("click", () => { tl2.restart(); });
-
+}
+	
 const lenis = new Lenis({
  duration: 2,
  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
