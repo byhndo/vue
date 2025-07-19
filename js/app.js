@@ -141,7 +141,8 @@ const { createRouter, createWebHistory } = VueRouter;
 const app = Vue.createApp({ 
   data() {
     return {
-      bg: 'bio'
+      bg: 'bio',
+      firstLoad: true
     };
   },
 
@@ -168,33 +169,35 @@ methods: {
     });
 },
     animatePath() {
-    console.log('animatePath:', this.bg); 
+      animePath(this.bg);
     },
 },
 mounted() {
-  if (this.$route.path !== '/bio') {
-    this.$router.replace('/bio'); 
-    this.bg = 'bio';
-  } else {
-    this.bg = 'bio';
-    Vue.nextTick(() => {
-      bgPath(this.bg);
-      this.firstLoad = false;
-    });
-  }
-},
-watch: {
-  $route(to) {
-    if (to.path === '/bio') {
+    if (this.$route.path !== '/bio') {
+      this.$router.replace('/bio');
       this.bg = 'bio';
-    } else if (to.path === '/photos') {
-      this.bg = 'photos';
+    } else {
+      this.bg = 'bio';
+      Vue.nextTick(() => {
+        animePath(this.bg);
+        this.firstLoad = false;
+      });
     }
-    if (this.firstLoad) return;
-    Vue.nextTick(() => {
-      this.animatePath();
-    });
-  }
+  },
+watch: {
+    $route(to) {
+      if (to.path === '/bio') {
+        this.bg = 'bio';
+      } else if (to.path === '/photos') {
+        this.bg = 'photos';
+      }
+
+      if (this.firstLoad) return;
+
+      Vue.nextTick(() => {
+        this.animatePath();
+      });
+    }
 }
 
 });
