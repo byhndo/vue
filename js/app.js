@@ -205,22 +205,6 @@ watch: {
 });
 app.use(router)
 app.mount("#app");	
-
-
-ScrollTrigger.scrollerProxy(document.body, {
-  scrollTop(value) {
-    return arguments.length ? lenis.scrollTo(value) : lenis.scroll.instance.scroll.y;
-  },
-  getBoundingClientRect() {
-    return {
-      top: 0,
-      left: 0,
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  },
-  pinType: document.body.style.transform ? "transform" : "fixed"
-});
 				
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
@@ -440,6 +424,21 @@ const photosPath = document.getElementById("photosPath");
   bioBtn.addEventListener("click", () => { tl1.restart(); });
   photosBtn.addEventListener("click", () => { tl2.restart(); });
 
+ScrollTrigger.scrollerProxy(document.body, {
+  scrollTop(value) {
+    return arguments.length ? lenis.scrollTo(value) : lenis.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect() {
+    return {
+      top: 0,
+      left: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  pinType: document.body.style.transform ? "transform" : "fixed"
+});
+	
 const lenis = new Lenis({
  duration: 2,
  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
