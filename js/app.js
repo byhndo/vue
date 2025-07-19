@@ -386,7 +386,7 @@ gsap.to('.header', {
     }
 });
 
-function animtePath(){
+function animePath(){
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 	
