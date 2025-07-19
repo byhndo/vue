@@ -742,12 +742,13 @@ tl.to(footer, {
 }); 
 		 	                                                                                                                  
 });	
-	 
-});
 
-ScrollTrigger.refresh();	
+ScrollTrigger.refresh();
 	
-}
+}, container); /* ctx */
+	
+	
+} /* setupReveal */
 	 
 }
 	
