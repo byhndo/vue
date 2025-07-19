@@ -416,8 +416,6 @@ gsap.to('.header', {
     }
 });
 
-
-
 const bioPath = document.getElementById("bioPath");
 const photosPath = document.getElementById("photosPath");
 	
@@ -453,10 +451,6 @@ const photosPath = document.getElementById("photosPath");
   bioBtn.addEventListener("click", () => { tl1.restart(); });
   photosBtn.addEventListener("click", () => { tl2.restart(); });
 
-    
-    
-
-	
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
 	
@@ -754,6 +748,8 @@ tl.to(footer, {
 });	
 	 
 });
+
+ScrollTrigger.refresh();	
 	
 }
 	 
