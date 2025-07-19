@@ -206,33 +206,22 @@ watch: {
 app.use(router)
 app.mount("#app");	
 
-const lenis = new Lenis({
- duration: 2,
- easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
- orientation: "vertical",
- direction: "vertical",
- gestureDirection: "vertical",
- smooth: 2,
- smoothWheel: 2,
- touchMultiplier: 2,
- wheelMultiplier: 2, 
- touchInertiaMultiplier: 35,
- syncTouch: true,
- autoResize: true
+
+ScrollTrigger.scrollerProxy(document.body, {
+  scrollTop(value) {
+    return arguments.length ? lenis.scrollTo(value) : lenis.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect() {
+    return {
+      top: 0,
+      left: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  pinType: document.body.style.transform ? "transform" : "fixed"
 });
-
-lenis.on('scroll', (e) => {
-  console.log(e)
-})
-
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.ticker.add((time)=>{
-  lenis.raf(time * 1000)
-})
-
-gsap.ticker.lagSmoothing(0); 
-			
+				
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noisetitle feDisplacementMap`);
@@ -451,6 +440,34 @@ const photosPath = document.getElementById("photosPath");
   bioBtn.addEventListener("click", () => { tl1.restart(); });
   photosBtn.addEventListener("click", () => { tl2.restart(); });
 
+const lenis = new Lenis({
+ duration: 2,
+ easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+ orientation: "vertical",
+ direction: "vertical",
+ gestureDirection: "vertical",
+ smooth: 2,
+ smoothWheel: 2,
+ touchMultiplier: 2,
+ wheelMultiplier: 2, 
+ touchInertiaMultiplier: 35,
+ syncTouch: true,
+ autoResize: true
+});
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+lenis.on('scroll', ScrollTrigger.update);
+ScrollTrigger.refresh();
+
+gsap.ticker.add((time)=>{
+  lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0); 
+	
 function setupReveal(container) {
 container.ctx = gsap.context(() => {	
 	
