@@ -743,7 +743,7 @@ tl.to(footer, {
 		 	                                                                                                                  
 });	
 	
-}, container); /* ctx */
+}); /* ctx */
 		
 } /* setupReveal */
 	 
