@@ -7,5 +7,11 @@ const routes = [
 
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition; 
+    }
+    return { top: 0 };  
+  },
 });
