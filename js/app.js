@@ -148,7 +148,10 @@ const app = Vue.createApp({
 
 methods: {        
     afterEnter(el) {      
-      setupReveal(el);       
+      setupReveal(el);   
+      Vue.nextTick(() => {
+        animePath(this.bg);
+    });
     },
     afterLeave(el) {
      if (el.ctx) {
