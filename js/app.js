@@ -122,9 +122,9 @@ async function animateLoader() {
 }
 
 animateLoader();
-			
-function contentShow() {
+
 gsap.registerPlugin(ScrollTrigger);
+function contentShow() {
 const easing = "expoScale(0.5,7,none)";
 const dur = 1;
 const once = "play none none reset";
@@ -145,19 +145,12 @@ const app = Vue.createApp({
       firstLoad: true 
     };
   },
-mounted() {   
-this.initScrollAnimations();
-  this.$nextTick(() => {    
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-  });
-	
-    if (this.$route.path.includes('bio')) {
-      this.bg = 'bio';
-    } else if (this.$route.path.includes('photos')) {
-      this.bg = 'photos';
-    }
+mounted() {   	
+if (this.$route.path.includes('bio')) {
+  this.bg = 'bio';
+} else if (this.$route.path.includes('photos')) {
+  this.bg = 'photos';
+}
 
 Vue.nextTick(() => {
       bgPath(this.bg); 
@@ -167,10 +160,10 @@ Vue.nextTick(() => {
 
 methods: {        
     afterEnter(el) {
-      setupReveal(el);	
-      setTimeout(() => {
+      requestAnimationFrame(() => {
+      setupReveal(el);
         ScrollTrigger.refresh();
-      }, 100);
+    });
     },
     afterLeave(el) {
      if (el.ctx) {
