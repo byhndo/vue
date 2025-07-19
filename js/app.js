@@ -742,8 +742,10 @@ tl.to(footer, {
 }); 
 		 	                                                                                                                  
 });	
+
+ScrollTrigger.refresh();
 	
-}); /* ctx */
+}, container); /* ctx */
 		
 } /* setupReveal */
 	 
