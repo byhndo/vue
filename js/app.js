@@ -145,7 +145,14 @@ const app = Vue.createApp({
       firstLoad: true 
     };
   },
-mounted() {         	
+mounted() {   
+this.initScrollAnimations();
+  this.$nextTick(() => {    
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  });
+	
     if (this.$route.path.includes('bio')) {
       this.bg = 'bio';
     } else if (this.$route.path.includes('photos')) {
@@ -160,7 +167,10 @@ Vue.nextTick(() => {
 
 methods: {        
     afterEnter(el) {
-      setupReveal(el);	    
+      setupReveal(el);	
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     },
     afterLeave(el) {
      if (el.ctx) {
