@@ -6,7 +6,7 @@ const routes = [
 ];
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory('/vue/'),
+  history: VueRouter.createWebHistory('/vue-ghpages-cdn/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
