@@ -134,78 +134,92 @@ $('html, body').css({
   'overflow': 'auto',
   'height': 'auto'
 });	
+  
+const { createApp, ref, watch, onMounted, nextTick } = Vue;
+const { createRouter, createWebHistory, useRoute, useRouter } = VueRouter;
 
-const { createApp, ref, onMounted } = Vue;
-const { createRouter, createWebHistory } = VueRouter;
+const app = createApp({
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    
+    const bg = ref('bio');
+    const firstLoad = ref(true);
 
-const app = Vue.createApp({ 
-  data() {
+    const afterEnter = (el) => {
+      setupReveal(el);
+      nextTick(() => {
+        animePath(bg.value);
+      });
+    };
+
+    const afterLeave = (el) => {
+      if (el.ctx) {
+        el.ctx.revert();
+        delete el.ctx;
+      }
+    };
+
+    const goToBio = () => {
+      bg.value = 'bio';
+      router.push('/bio').then(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    };
+
+    const goToPhotos = () => {
+      bg.value = 'photos';
+      router.push('/photos').then(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    };
+
+    const animatePath = () => {
+      animePath(bg.value);
+    };
+
+    onMounted(() => {
+      if (route.path !== '/bio') {
+        router.replace('/bio');
+        bg.value = 'bio';
+      } else {
+        bg.value = 'bio';
+        nextTick(() => {
+          animePath(bg.value);
+          firstLoad.value = false;
+        });
+      }
+    });
+
+    watch(
+      () => route.path,
+      (newPath) => {
+        if (newPath === '/bio') {
+          bg.value = 'bio';
+        } else if (newPath === '/photos') {
+          bg.value = 'photos';
+        }
+
+        if (firstLoad.value) return;
+
+        nextTick(() => {
+          animatePath();
+        });
+      }
+    );
+
     return {
-      bg: 'bio',
-      firstLoad: true
+      bg,
+      goToBio,
+      goToPhotos,
+      afterEnter,
+      afterLeave,
     };
   },
-
-methods: {        
-    afterEnter(el) {      
-      setupReveal(el);   
-      Vue.nextTick(() => {
-        animePath(this.bg);
-    });
-    },
-    afterLeave(el) {
-     if (el.ctx) {
-       el.ctx.revert(); 
-       delete el.ctx;
-     } 
-    },
-    goToBio() {
-    this.bg = 'bio';
-    this.$router.push('/bio').then(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  },
-    goToPhotos() {
-    this.bg = 'photos';
-    this.$router.push('/photos').then(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-},
-    animatePath() {
-      animePath(this.bg);
-    },
-},
-mounted() {
-    if (this.$route.path !== '/bio') {
-      this.$router.replace('/bio');
-      this.bg = 'bio';
-    } else {
-      this.bg = 'bio';
-      Vue.nextTick(() => {
-        animePath(this.bg);
-        this.firstLoad = false;
-      });
-    }
-  },
-watch: {
-    $route(to) {
-      if (to.path === '/bio') {
-        this.bg = 'bio';
-      } else if (to.path === '/photos') {
-        this.bg = 'photos';
-      }
-
-      if (this.firstLoad) return;
-
-      Vue.nextTick(() => {
-        this.animatePath();
-      });
-    }
-}
-
 });
-app.use(router)
-app.mount("#app");	
+
+app.use(router);
+app.mount("#app");
 				
 const title = document.querySelector("h1");
 const feBlur = document.querySelector(`#noisetitle feGaussianBlur`);
